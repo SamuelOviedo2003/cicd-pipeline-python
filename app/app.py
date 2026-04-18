@@ -7,7 +7,6 @@ from flask import Flask, render_template, request
 from .calculadora import sumar, restar, multiplicar, dividir
 
 app = Flask(__name__)
-app.config["WTF_CSRF_ENABLED"] = False
 
 
 @app.route("/", methods=["GET"])

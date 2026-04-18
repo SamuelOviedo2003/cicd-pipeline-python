@@ -7,10 +7,16 @@ from flask import Flask, render_template, request
 from .calculadora import sumar, restar, multiplicar, dividir
 
 app = Flask(__name__)
+app.config['WTF_CSRF_ENABLED'] = False
 
-
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def index():
+    """Carga el formulario principal."""
+    return render_template("index.html", resultado=None)
+
+
+@app.route("/", methods=["POST"])
+def calcular():
     """This function provides methods to connect the user with the app"""
     resultado = None
     if request.method == "POST":

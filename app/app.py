@@ -1,3 +1,6 @@
+"""
+This module provides methods to connect the app
+"""
 # app/app.py
 from flask import Flask, render_template, request
 from .calculadora import sumar, restar, multiplicar, dividir
@@ -7,6 +10,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    """This function provides methods to connect the user with the app"""
     resultado = None
     if request.method == "POST":
         try:

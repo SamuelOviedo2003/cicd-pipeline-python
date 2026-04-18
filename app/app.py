@@ -11,14 +11,19 @@ from .calculadora import sumar, restar, multiplicar, dividir
 app = Flask(__name__)
 
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-only-insecure-key")
+
+
 @app.route("/", methods=["GET"])
 def index():
     """Carga el formulario principal."""
     return render_template("index.html", resultado=None)
 
+
 @app.route("/health")
 def health():
+    """HEARTBEAT"""
     return "OK", 200
+
 
 @app.route("/", methods=["POST"])
 def calcular():
@@ -46,6 +51,7 @@ def calcular():
             resultado = "Error: No se puede dividir por cero"
 
     return render_template("index.html", resultado=resultado)
+
 
 if __name__ == "__main__":  # pragma: no cover
     app.run(port=5000, host="127.0.0.1")
